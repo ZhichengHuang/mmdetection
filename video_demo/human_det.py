@@ -3,7 +3,7 @@ import mmcv
 import os
 import numpy as np
 
-
+# https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_x101_32x4d_fpn_1x_20181218-ad81c133.pth
 
 # TODO: merge this method with the one in BaseDetector
 def show_result(img,
@@ -43,9 +43,10 @@ def show_result(img,
         for i, bbox in enumerate(bbox_result)
     ]
     labels = np.concatenate(labels)
-    ids = labels==0
-    labels = labels[ids]
-    bboxes = bboxes[ids]
+    # select the special class
+    # ids = labels==0
+    # labels = labels[ids]
+    # bboxes = bboxes[ids]
     
     
     # draw segmentation masks
@@ -83,7 +84,7 @@ class Human_detector():
     def image_det(self,imgs,out_dir):
         files = os.listdir(imgs)
         for f in files:
-            if f.endswith(".png") or f.endswith(".jpg"):
+            if f.endswith(".png") or f.endswith(".jpg") or f.endswith(".JPG"):
                 name = os.path.join(imgs,f)
                 result = inference_detector(self.model,name)
                 out_name = os.path.join(out_dir,f)
@@ -91,5 +92,5 @@ class Human_detector():
 
 if __name__ =="__main__":
     detector = Human_detector()
-    detector.image_det("/root/studio_frames","/root/tmp_out/")
+    detector.image_det("/root/car","/root/car_out/")
 
