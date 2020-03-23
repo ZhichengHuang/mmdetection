@@ -7,6 +7,7 @@ class Human_Detector_API():
     """
     score_thr: the thread to selelc the bbo
     return results: numpy array,(n,5), n is the bbox number, [x1,y1,x1,y2,score]
+    img_path: str
     """
     def __init__(self,
                 score_thr=0.75,
