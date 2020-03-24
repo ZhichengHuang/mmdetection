@@ -25,14 +25,15 @@ class Human_Detector_API():
         bboxes = np.vstack(bbox_result)
         assert bboxes.shape[1] == 5
         scores = bboxes[:, -1]
-        inds = scores > score_thr
+        inds = scores > self.score_thr
         bboxes = bboxes[inds, :]
         return bboxes
 
 
 if __name__=="__main__":
     h_detectore = Human_Detector_API()
-    bbox_results=h_detectore.detector("/root/3646891459_f7dd21774d_z.jpg")
+    bbox_results=h_detectore.detector("/root/8838.png")
+    print(bbox_results)
 
 
 
